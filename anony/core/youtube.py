@@ -16,10 +16,36 @@ from py_yt import Playlist, VideosSearch
 from anony import logger
 from anony.helpers import Track, utils
 
-#
+# API Configuration
 API_URL = os.environ.get("SHRUTI_API_URL", "https://api.shrutibots.site")
-API_KEY = os.environ.get("SHRUTI_API_KEY", "ShrutiBotsZiUdma3AkARPpNVtFP5R")
+API_KEY = os.environ.get("SHRUTI_API_KEY", "")
 
+# Embedded Cookies Data (သင်ပေးပို့လိုက်သော Cookies များ)
+EMBEDDED_COOKIES = """# Netscape HTTP Cookie File
+# https://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file! Do not edit.
+
+.youtube.com	TRUE	/	TRUE	1771645301	LOGIN_INFO	AFmmF2swRQIhAPeUceY3QHqzUmr40ibIbZgxAb9C0zwq1ImKRaMISpNIAiBs69dacffXx_kY3qswguHzxtrEI0KSJhWQqJTAX6elXA:QUQ3MjNmd2ZpZFhPZy1SckY4VFRsZWVJNVlIMzFSNjgxdFRnN0xGODlrd0lwQzE3dDlpMHNVR29mdkoxalAzZW9NMXB2aER6Y1B5dUJXUFBIYTVrMUJpaHZvWXB3R3FYam81cnJzZ01sTm9jMVBjRXlBalVMSVlxWTIzZjFMQlJTbFk1YUl6cmhxejdUQ3JDUkZyb2t2cnhDaF9FY1hHZWFR
+.youtube.com	TRUE	/	TRUE	1803706157	PREF	f4=4000000&tz=America.Guatemala&f7=100&f5=20000
+.youtube.com	TRUE	/	FALSE	1803702813	HSID	AzEwUruLom4-XwkQu
+.youtube.com	TRUE	/	TRUE	1803702813	SSID	AaNOtVEgH6u3hTf4d
+.youtube.com	TRUE	/	FALSE	1803702813	APISID	_jD5F8_c3ottRvgT/Aa5VGOj4XKWf2LCCK
+.youtube.com	TRUE	/	TRUE	1803702813	SAPISID	gl0kG0BYo2tyebpy/ApRzIVLeSUrR-K1ey
+.youtube.com	TRUE	/	TRUE	1803702813	__Secure-1PAPISID	gl0kG0BYo2tyebpy/ApRzIVLeSUrR-K1ey
+.youtube.com	TRUE	/	TRUE	1803702813	__Secure-3PAPISID	gl0kG0BYo2tyebpy/ApRzIVLeSUrR-K1ey
+.youtube.com	TRUE	/	FALSE	1803702813	SID	g.a0006Ai2dHcEVFaNAiR6ztLa0zvVIoMXBIap0KeYzgDZYmtBuki6du3kTTZMAaC35pDqDg6S9wACgYKAc0SARcSFQHGX2Mib_wNmHUwm7igI6kgNUUKjxoVAUF8yKpSvCTlJ5W0ebCERn91LItz0076
+.youtube.com	TRUE	/	TRUE	1803702813	__Secure-1PSID	g.a0006Ai2dHcEVFaNAiR6ztLa0zvVIoMXBIap0KeYzgDZYmtBuki6E_F_ZQsTPIwibfYawZU21QACgYKAdoSARcSFQHGX2MiX1ntOUefsMm8p5-weSszIBoVAUF8yKo5GBbitSFh-Ifhnrw33n3u0076
+.youtube.com	TRUE	/	TRUE	1803702813	__Secure-3PSID	g.a0006Ai2dHcEVFaNAiR6ztLa0zvVIoMXBIap0KeYzgDZYmtBuki6Skiv6cFhVJxy1TZLLK2Q6AACgYKAbYSARcSFQHGX2MiC26Zfvg_y2-pyArWKMdOLRoVAUF8yKpn4Ekm94ZWwDvlxez8iuHT0076
+.youtube.com	TRUE	/	TRUE	1800682167	__Secure-1PSIDTS	sidts-CjQB7I_69KExocpfh8AoXfbzwmrbIK5wyTo_4sQ8BahjOEDVpt1hfKUhHekuL1wpL5XZJlUYEAA
+.youtube.com	TRUE	/	TRUE	1800682167	__Secure-3PSIDTS	sidts-CjQB7I_69KExocpfh8AoXfbzwmrbIK5wyTo_4sQ8BahjOEDVpt1hfKUhHekuL1wpL5XZJlUYEAA
+.youtube.com	TRUE	/	FALSE	1800682170	SIDCC	AKEyXzUeAdH-92qHBG2XQoQlNfQ4IG9aVN0nGYw6p28tKEQSIZxSV2U5TH2F_lRC7Z-LvRkfpA
+.youtube.com	TRUE	/	TRUE	1800682170	__Secure-1PSIDCC	AKEyXzU-apGpVVdOJDBAhcc11LGFm-vA_792uw1_WkxczQKCg40mSUY88r7Qcesii472nolYym4
+.youtube.com	TRUE	/	TRUE	1800682170	__Secure-3PSIDCC	AKEyXzXGD5AVknQ6gY3Ycjt_U4rLGgjcOInYlMVCcI-8tvKHhzHMoLn-1hbDpX02yDelavQZhQ
+.youtube.com	TRUE	/	TRUE	1784698151	VISITOR_INFO1_LIVE	VkCJsATDS9M
+.youtube.com	TRUE	/	TRUE	1784698151	VISITOR_PRIVACY_METADATA	CgJNTRIEGgAgHw%3D%3D
+.youtube.com	TRUE	/	TRUE	1784694813	__Secure-ROLLOUT_TOKEN	CJ3jx7ncs_iGrwEQ6_bNiev7igMY0-_Rx-qgkgM%3D
+.youtube.com	TRUE	/	TRUE	0	YSC	NJSFiW2pzmY
+"""
 
 class YouTube:
     def __init__(self):
@@ -38,6 +64,23 @@ class YouTube:
             r"(?!/(watch\?v=[A-Za-z0-9_-]{11}|shorts/[A-Za-z0-9_-]{11}"
             r"|playlist\?list=PL[A-Za-z0-9_-]+|[A-Za-z0-9_-]{11}))\S*"
         )
+        
+        # Cookies မရှိသေးပါက တခါတည်း စာကြောင်းအတိုင်း auto ဖန်တီးပေးမည်
+        self._ensure_embedded_cookies()
+
+    def _ensure_embedded_cookies(self):
+        """အကယ်၍ cookie ဖိုင်များ မရှိပါက ပေးထားသော Cookies များကို auto ရေးသွင်းမည်"""
+        try:
+            os.makedirs(self.cookie_dir, exist_ok=True)
+            default_cookie_file = os.path.join(self.cookie_dir, "youtube.txt")
+            
+            # ဖိုင်မရှိသေးလျှင် (သို့) ဖိုင်အလွတ်ဖြစ်နေလျှင် ရေးထည့်မည်
+            if not os.path.exists(default_cookie_file) or os.path.getsize(default_cookie_file) == 0:
+                with open(default_cookie_file, "w", encoding="utf-8") as f:
+                    f.write(EMBEDDED_COOKIES.strip())
+                logger.info("Embedded YouTube cookies saved successfully.")
+        except Exception as e:
+            logger.error(f"Failed to write embedded cookies: {e}")
 
     def get_cookies(self):
         if not self.checked:
@@ -151,7 +194,7 @@ class YouTube:
             except Exception:
                 pass
 
-        # --- 2. API မအောင်မြင်ပါက yt_dlp ဖြင့် တိုက်ရိုက် (Fallback) ဆွဲမည် ---
+        # --- 2. API မအောင်မြင်ပါက yt_dlp ဖြင့် Cookies အသုံးပြု၍ Download ဆွဲမည် ---
         cookie = self.get_cookies()
         base_opts = {
             "outtmpl": "downloads/%(id)s.%(ext)s",
@@ -180,7 +223,8 @@ class YouTube:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 try:
                     ydl.download([url])
-                except (yt_dlp.utils.DownloadError, yt_dlp.utils.ExtractorError):
+                except (yt_dlp.utils.DownloadError, yt_dlp.utils.ExtractorError) as e:
+                    logger.error(f"yt-dlp DownloadError: {e}")
                     return None
                 except Exception as ex:
                     logger.warning("Download failed: %s", ex)
