@@ -18,34 +18,34 @@ from anony.helpers import Track, utils
 
 # API Configuration
 API_URL = os.environ.get("SHRUTI_API_URL", "https://api.shrutibots.site")
-API_KEY = os.environ.get("SHRUTI_API_KEY", "ShrutiBotsV311lfYbnrxJ86SGBQ3U")
+API_KEY = os.environ.get("SHRUTI_API_KEY", "ShrutiBots7xhmAalRnTT0mTbgszR4")
 
-# Corrected Netscape Cookie Format (Separated by Tab \t)
-EMBEDDED_COOKIES = (
-    ".youtube.com\tTRUE\t/\tTRUE\t1788834227\tVISITOR_PRIVACY_METADATA\tCgJNTRIEGgAgZg%3D%3D\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1807842226\t__Secure-3PSID\tg.a0007gjBkEY2gKuIK-IDNA4O9IE8wiocn8xv3WOp-JbD6KKxZwXounGOWJraQeCKpqG-oSwq9wACgYKAZkSARISFQHGX2MizRsEjWIBfOf8FT3Y3LMa_RoVAUF8yKpOPp3cWUdYQ5Ao5O96IuJM0076\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1773283987\tGPS\t1\n"
-    ".youtube.com\tTRUE\t/\tFALSE\t1804818233\tSIDCC\tAKEyXzW1sqaKu6ScKuu9DKvRXkDOUkGb35L6HhIlYENKXlnQKqsd44MpPeDXCEVNXNiXMxq4\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1773368661\tYSC\tV5xhbUOi2aM\n"
-    ".youtube.com\tTRUE\t/\tFALSE\t1807842226\tSID\tg.a0007gjBkEY2gKuIK-IDNA4O9IE8wiocn8xv3WOp-JbD6KKxZwXoYEH2e75zTffKW0Xjy7JjNAACgYKAYYSARISFQHGX2Miw6hqbohoy53Wf7whYiki9xoVAUF8yKqy6CRK8cS9icqdLlHz7eND0076\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1804818226\t__Secure-1PSIDTS\tsidts-CjUBBj1CYnb_2un-x8U3DosdFcqPYVJhbg8Bk68ZCnIivIxZ-HGzJjNZhZ3mKsTTKPb9rfqcrxAA\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1773282831\tCONSISTENCY\tAG2Tqf8zG-huG-xjZAla2JPHKiMEKIrXDCYwlOHHGuhn4BqYzEQeeWHU4KBqrAnF4gXzuExsDwlRUzVRXKDOoYbqs5Cc2zhXioJl1PDof9f5T3qYUl27a9fnzomuUSXtDrxnp1hPZjCN1LI5o2cd_BCb\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1807842226\tSAPISID\tool8aM3EyPScJD-Y/A2ZqSKUfmKB11OwXW\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1804818233\t__Secure-1PSIDCC\tAKEyXzWE3s3Z4jjWsZL2ADVxRV8QrrovXNLf3fLjfD9yjEGzPH3nS1nBe6mDRNa_Z19OZUfKZw\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1807842226\tSSID\tAT0hp-hXDaolbHwv7\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1807842226\t__Secure-1PAPISID\tool8aM3EyPScJD-Y/A2ZqSKUfmKB11OwXW\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1807842226\t__Secure-1PSID\tg.a0007gjBkEY2gKuIK-IDNA4O9IE8wiocn8xv3WOp-JbD6KKxZwXo1xo64CJRyhnVfADBa2PqOgACgYKAV0SARISFQHGX2Mi1ad7QdhlGEysEgNracH2bhoVAUF8yKreHDECH5KvXV8UNvE31fIb0076\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1807842226\t__Secure-3PAPISID\tool8aM3EyPScJD-Y/A2ZqSKUfmKB11OwXW\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1804818233\t__Secure-3PSIDCC\tAKEyXzUDsCV5ZzeaZ8_RRuemevoTvbJutsmPMlGkA6CmKMPY1zz4f5-mKS5HuYiYODFDpNNRRg\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1804818226\t__Secure-3PSIDTS\tsidts-CjUBBj1CYnb_2un-x8U3DosdFcqPYVJhbg8Bk68ZCnIivIxZ-HGzJjNZhZ3mKsTTKPb9rfqcrxAA\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1788834187\tSecure-YNID\t16.YT=GlwsbGn0fwwI-d-fno4xNR8ODUrXPmpXzVPd0Yw-YqCAZRTG2HLiCB6OPx_wu7cH-QOOa2ymy52RM-yS5A3yX2uA8Dp09uFhXKuV7krGSttP2UxmiC8yLsmvqa3Koezzs8cgbS5HZA8hQw6hVBJNPumr8rBZqjn0ehTKVK53mbtKU3iIf96Cquwc-hHR71SIqwN0TiSUPz3iQcwSl59oahyvxBQJrswqogCv1UEvAKwHWO9pQVvPhI7yj19BukJzfaYdJpxM8eI0Ixp97WheNpkhT5n_qZm6xu_Go9dmMGTglnchyztzIzxRy0iS7SBky383yf7gUUuQTjcFvwCQ\n"
-    ".youtube.com\tTRUE\t/\tFALSE\t1807842226\tAPISID\tr2h8dJdwnPtOnB6w/A696rI3lpsRhDG7gE\n"
-    ".youtube.com\tTRUE\t/\tFALSE\t1807842226\tHSID\tAKFaV2VhVw1F0A1Ki\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1807842227\tLOGIN_INFO\tAFmmF2swRAIgcB7wcOs4WNVu-ntf7mqpZ0eDodNht4tOYj9GjX_22kcCIDZ6go5sU7AJYiXaiXvDo7RTNDux2DRqDwi5aMYf_6dA:QUQ3MjNmd2RNVmZwS2M4ajJCX0NDQTZRLUhZUERGOVU3ekR3UWpkZVZ3QXVwZ1JEWmM5cDExQWV4MzRzaXF5bS1uY0dFTUlDcDJySkVkd3pZbFRVc29uSEtKT0tscDRDOG93c3Zxd0R1ZkZCTlBYcGdqaFVzMWhhOTZaRWlwTDF6WDJWU0tiM3FmRW05dUlkMlVndFROblhyejBxeGc2a09R\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1807842230\tPREF\ttz=Asia.Rangoon&f7=100&f4=4000000\n"
-    ".youtube.com\tTRUE\t/\tTRUE\t1788834227\tVISITOR_INFO1_LIVE\trQRaTxG5Dg8\n"
-)
+# Embedded Cookies Data (သင်ပေးပို့လိုက်သော Cookies များ)
+EMBEDDED_COOKIES = """# Netscape HTTP Cookie File
+# https://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file! Do not edit.
 
+.youtube.com	TRUE	/	TRUE	1771645301	LOGIN_INFO	AFmmF2swRQIhAPeUceY3QHqzUmr40ibIbZgxAb9C0zwq1ImKRaMISpNIAiBs69dacffXx_kY3qswguHzxtrEI0KSJhWQqJTAX6elXA:QUQ3MjNmd2ZpZFhPZy1SckY4VFRsZWVJNVlIMzFSNjgxdFRnN0xGODlrd0lwQzE3dDlpMHNVR29mdkoxalAzZW9NMXB2aER6Y1B5dUJXUFBIYTVrMUJpaHZvWXB3R3FYam81cnJzZ01sTm9jMVBjRXlBalVMSVlxWTIzZjFMQlJTbFk1YUl6cmhxejdUQ3JDUkZyb2t2cnhDaF9FY1hHZWFR
+.youtube.com	TRUE	/	TRUE	1803706157	PREF	f4=4000000&tz=America.Guatemala&f7=100&f5=20000
+.youtube.com	TRUE	/	FALSE	1803702813	HSID	AzEwUruLom4-XwkQu
+.youtube.com	TRUE	/	TRUE	1803702813	SSID	AaNOtVEgH6u3hTf4d
+.youtube.com	TRUE	/	FALSE	1803702813	APISID	_jD5F8_c3ottRvgT/Aa5VGOj4XKWf2LCCK
+.youtube.com	TRUE	/	TRUE	1803702813	SAPISID	gl0kG0BYo2tyebpy/ApRzIVLeSUrR-K1ey
+.youtube.com	TRUE	/	TRUE	1803702813	__Secure-1PAPISID	gl0kG0BYo2tyebpy/ApRzIVLeSUrR-K1ey
+.youtube.com	TRUE	/	TRUE	1803702813	__Secure-3PAPISID	gl0kG0BYo2tyebpy/ApRzIVLeSUrR-K1ey
+.youtube.com	TRUE	/	FALSE	1803702813	SID	g.a0006Ai2dHcEVFaNAiR6ztLa0zvVIoMXBIap0KeYzgDZYmtBuki6du3kTTZMAaC35pDqDg6S9wACgYKAc0SARcSFQHGX2Mib_wNmHUwm7igI6kgNUUKjxoVAUF8yKpSvCTlJ5W0ebCERn91LItz0076
+.youtube.com	TRUE	/	TRUE	1803702813	__Secure-1PSID	g.a0006Ai2dHcEVFaNAiR6ztLa0zvVIoMXBIap0KeYzgDZYmtBuki6E_F_ZQsTPIwibfYawZU21QACgYKAdoSARcSFQHGX2MiX1ntOUefsMm8p5-weSszIBoVAUF8yKo5GBbitSFh-Ifhnrw33n3u0076
+.youtube.com	TRUE	/	TRUE	1803702813	__Secure-3PSID	g.a0006Ai2dHcEVFaNAiR6ztLa0zvVIoMXBIap0KeYzgDZYmtBuki6Skiv6cFhVJxy1TZLLK2Q6AACgYKAbYSARcSFQHGX2MiC26Zfvg_y2-pyArWKMdOLRoVAUF8yKpn4Ekm94ZWwDvlxez8iuHT0076
+.youtube.com	TRUE	/	TRUE	1800682167	__Secure-1PSIDTS	sidts-CjQB7I_69KExocpfh8AoXfbzwmrbIK5wyTo_4sQ8BahjOEDVpt1hfKUhHekuL1wpL5XZJlUYEAA
+.youtube.com	TRUE	/	TRUE	1800682167	__Secure-3PSIDTS	sidts-CjQB7I_69KExocpfh8AoXfbzwmrbIK5wyTo_4sQ8BahjOEDVpt1hfKUhHekuL1wpL5XZJlUYEAA
+.youtube.com	TRUE	/	FALSE	1800682170	SIDCC	AKEyXzUeAdH-92qHBG2XQoQlNfQ4IG9aVN0nGYw6p28tKEQSIZxSV2U5TH2F_lRC7Z-LvRkfpA
+.youtube.com	TRUE	/	TRUE	1800682170	__Secure-1PSIDCC	AKEyXzU-apGpVVdOJDBAhcc11LGFm-vA_792uw1_WkxczQKCg40mSUY88r7Qcesii472nolYym4
+.youtube.com	TRUE	/	TRUE	1800682170	__Secure-3PSIDCC	AKEyXzXGD5AVknQ6gY3Ycjt_U4rLGgjcOInYlMVCcI-8tvKHhzHMoLn-1hbDpX02yDelavQZhQ
+.youtube.com	TRUE	/	TRUE	1784698151	VISITOR_INFO1_LIVE	VkCJsATDS9M
+.youtube.com	TRUE	/	TRUE	1784698151	VISITOR_PRIVACY_METADATA	CgJNTRIEGgAgHw%3D%3D
+.youtube.com	TRUE	/	TRUE	1784694813	__Secure-ROLLOUT_TOKEN	CJ3jx7ncs_iGrwEQ6_bNiev7igMY0-_Rx-qgkgM%3D
+.youtube.com	TRUE	/	TRUE	0	YSC	NJSFiW2pzmY
+"""
 
 class YouTube:
     def __init__(self):
@@ -64,19 +64,21 @@ class YouTube:
             r"(?!/(watch\?v=[A-Za-z0-9_-]{11}|shorts/[A-Za-z0-9_-]{11}"
             r"|playlist\?list=PL[A-Za-z0-9_-]+|[A-Za-z0-9_-]{11}))\S*"
         )
-
+        
+        # Cookies မရှိသေးပါက တခါတည်း စာကြောင်းအတိုင်း auto ဖန်တီးပေးမည်
         self._ensure_embedded_cookies()
 
     def _ensure_embedded_cookies(self):
-        """အကယ်၍ cookie ဖိုင်မရှိပါက (သို့) Format မှားနေပါက auto ရေးသွင်းမည်"""
+        """အကယ်၍ cookie ဖိုင်များ မရှိပါက ပေးထားသော Cookies များကို auto ရေးသွင်းမည်"""
         try:
             os.makedirs(self.cookie_dir, exist_ok=True)
             default_cookie_file = os.path.join(self.cookie_dir, "youtube.txt")
-
-            # အသစ်ပြန်လည်ရေးသားမည်
-            with open(default_cookie_file, "w", encoding="utf-8") as f:
-                f.write(EMBEDDED_COOKIES)
-            logger.info("Embedded YouTube cookies saved successfully.")
+            
+            # ဖိုင်မရှိသေးလျှင် (သို့) ဖိုင်အလွတ်ဖြစ်နေလျှင် ရေးထည့်မည်
+            if not os.path.exists(default_cookie_file) or os.path.getsize(default_cookie_file) == 0:
+                with open(default_cookie_file, "w", encoding="utf-8") as f:
+                    f.write(EMBEDDED_COOKIES.strip())
+                logger.info("Embedded YouTube cookies saved successfully.")
         except Exception as e:
             logger.error(f"Failed to write embedded cookies: {e}")
 
