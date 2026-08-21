@@ -4,6 +4,7 @@
 
 
 from pyrogram import types
+from pyrogram.enums import ButtonStyle
 
 from anony import app, config, lang
 from anony.core.lang import lang_codes
