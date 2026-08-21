@@ -112,7 +112,7 @@ class Inline:
                 [self.ikb(text=f"{lang['add_me']}", url=f"https://t.me/{app.username}?startgroup=true", style=ButtonStyle.PRIMARY)],
                 [self.ikb(text=f"{lang['help']}", callback_data="help", style=ButtonStyle.DANGER)],
                 [
-                    self.ikb(text=f"{lang['support']}", url=config.SUPPORT_CHAT, style=ButtonStyle.SUCCESS),
+                    self.ikb(text=f"{lang['support']}", url=config.SUPPORT_CHAT, style=ButtonStyle.SUCCESS, icon_custom_emoji_id="5397733426654626788"),
                     self.ikb(text=f"{lang['channel']}", url=config.SUPPORT_CHANNEL, style=ButtonStyle.SUCCESS),
                 ],
                 [self.ikb(text=f"{lang['source']}", user_id=config.OWNER_ID, style=ButtonStyle.PRIMARY)],
