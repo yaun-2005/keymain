@@ -116,6 +116,7 @@ class Inline:
                     self.ikb(text=f"{lang['channel']}", url=config.SUPPORT_CHANNEL, style=ButtonStyle.SUCCESS),
                 ],
                 [self.ikb(text=f"{lang['source']}", user_id=config.OWNER_ID, style=ButtonStyle.PRIMARY)],
+                [self.ikb(text=f"𝑪𝒓𝒂𝒕𝒆𝒓", url="https://t.me/LeyoxYan_Yan", style=ButtonStyle.PRIMARY)],
             ]
         return self.ikm(rows)
 
