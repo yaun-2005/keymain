@@ -104,7 +104,7 @@ class Inline:
     def queue_markup(
         self, chat_id: int, _text: str, playing: bool
     ) -> types.InlineKeyboardMarkup:
-        _action = "pause" if playing else "resume"style=ButtonStyle.PRIMARY
+        _action = "pause" if playing else "resume"
         return self.ikm(
             [[self.ikb(text=_text, callback_data=f"controls {_action} {chat_id} q")]]
         )
