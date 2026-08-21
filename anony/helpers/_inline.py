@@ -158,7 +158,7 @@ class Inline:
                 [
                     self.ikb(
                         text=lang["source"],
-                        url="https://t.me/+73UOpH8smTplYTE9",
+                        user_id=config.OWNER_ID,
                     )
                 ]
             ]
