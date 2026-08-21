@@ -145,7 +145,7 @@ class Inline:
             [
                 self.ikb(
                     text=lang["add_me"],
-                    url=f"https://t.me/{app.username}?startgroup=true",style=ButtonStyle.PRIMARY,
+                    url=f"https://t.me/{app.username}?startgroup=true",style=ButtonStyle.PRIMARY),
                 )
             ],
             [self.ikb(text=lang["help"], callback_data="help")],
@@ -159,7 +159,7 @@ class Inline:
                 [
                     self.ikb(
                         text=lang["source"],
-                        user_id=config.OWNER_ID, style=ButtonStyle.PRIMARY
+                        user_id=config.OWNER_ID, style=ButtonStyle.PRIMARY),
                     )
                 ]
             ]
