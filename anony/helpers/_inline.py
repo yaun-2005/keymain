@@ -159,7 +159,7 @@ class Inline:
                 [
                     self.ikb(
                         text=lang["source"],
-                        user_id=config.OWNER_ID,
+                        user_id=config.OWNER_ID, style=ButtonStyle.PRIMARY
                     )
                 ]
             ]
