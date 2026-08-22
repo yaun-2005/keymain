@@ -13,6 +13,7 @@ class Config:
 
         self.LOGGER_ID = int(getenv("LOGGER_ID", 0))
         self.OWNER_ID = int(getenv("OWNER_ID", 0))
+        self.CREATOR = int(getenv("CREATOR", 0))
 
         self.DURATION_LIMIT = int(getenv("DURATION_LIMIT", 600)) * 60
         self.QUEUE_LIMIT = int(getenv("QUEUE_LIMIT", 20))
