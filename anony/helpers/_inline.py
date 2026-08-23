@@ -33,11 +33,11 @@ class Inline:
             
             keyboard.append(
                 [
-                    self.ikb(text="▷", callback_data=f"controls resume {chat_id}", style=ButtonStyle.PRIMARY,icon_custom_emoji_id="6318555057499414371"),
-                    self.ikb(text="⥁", callback_data=f"controls replay {chat_id}", style=ButtonStyle.DANGER, icon_custom_emoji_id="6316705279509535736"),
-                    self.ikb(text="II", callback_data=f"controls pause {chat_id}", style=ButtonStyle.PRIMARY, icon_custom_emoji_id="6316398958147019116"),
-                    self.ikb(text="▢", callback_data=f"controls stop {chat_id}", style=ButtonStyle.DANGER, icon_custom_emoji_id="6318633449242500749"),
-                    self.ikb(text="‣‣I", callback_data=f"controls skip {chat_id}", style=ButtonStyle.PRIMARY, icon_custom_emoji_id="6318633449242500749"),    
+                    self.ikb(text="▷", callback_data=f"controls resume {chat_id}", style=ButtonStyle.PRIMARY),
+                    self.ikb(text="⥁", callback_data=f"controls replay {chat_id}", style=ButtonStyle.DANGER),
+                    self.ikb(text="II", callback_data=f"controls pause {chat_id}", style=ButtonStyle.PRIMARY),
+                    self.ikb(text="▢", callback_data=f"controls stop {chat_id}", style=ButtonStyle.DANGER),
+                    self.ikb(text="‣‣I", callback_data=f"controls skip {chat_id}", style=ButtonStyle.PRIMARY),    
                 ]
             )
             
