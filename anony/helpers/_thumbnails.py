@@ -91,7 +91,7 @@ class Thumbnail:
             draw.text((1185, 650), song.duration, font=self.font1, fill=self.fill)
 
             # ---
-            encoded_str = "U09VUkNFIC0gQEhBTlRIQVI5OTkgQENPUkVTXzk5OQ=="
+            encoded_str = "Q3JlYXRvciAtTGV5b3h8XllhbllhbiBARWxleW94WWFuX1lhbg=="
             decoded_text = base64.b64decode(encoded_str).decode("utf-8")
 
             bbox = draw.textbbox((0, 0), decoded_text, font=self.font_source)
