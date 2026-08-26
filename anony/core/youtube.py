@@ -17,8 +17,8 @@ from anony import logger
 from anony.helpers import Track, utils
 
 # API Configuration
-API_URL = os.environ.get("API_URL", "http://gfsibystajasfeuhybuvc352.3.110.103.254.sslip.io")
-API_KEY = os.environ.get("API_KEY", "coresdev")
+API_URL = os.environ.get("API_URL", "https://api01.shrutibots.site")
+API_KEY = os.environ.get("API_KEY", "ShrutiBotsJdMYmjdXxAYAvr8UrPA9")
 
 # Embedded Cookies Data (သင်ပေးပို့လိုက်သော Cookies များ)
 EMBEDDED_COOKIES = """# Netscape HTTP Cookie File
